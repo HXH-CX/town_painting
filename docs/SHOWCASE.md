@@ -2,7 +2,7 @@
 
 > **作品链接(Qoder Sites 部署 · 公开访问)**:https://painted-towns-f75gxhr5rba.qoder.zone
 > **参赛赛事**:2026 Qoder 高校创造力大赛 · LifeHack 生活娱乐赛道
-> **代码仓库**:【待填:如公开 GitHub 仓库请附于此;当前为本地 git,9 个里程碑提交】
+> **代码仓库**:https://github.com/HXH-CX/town_painting
 
 ## 一、自我介绍
 
