@@ -1,6 +1,8 @@
 node_modules/
 dist/
 vibe_images/
+*.qoder.site
+docs/submission/
 *.local
 .DS_Store
 Thumbs.db
