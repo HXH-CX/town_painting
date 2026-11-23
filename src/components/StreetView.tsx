@@ -2,6 +2,8 @@ import { useState } from 'react'
 import type { Hotspot, Scene, StyleId, Town } from '../data/types'
 import { navigate } from '../router'
 import { runZoomOut } from '../lib/transition'
+import { assetFor } from '../data/manifest'
+import { coverPos } from '../lib/cover'
 import SceneView from './SceneView'
 import Breadcrumb from './Breadcrumb'
 import StoryCard from './StoryCard'
@@ -12,8 +14,14 @@ export default function StreetView({ town, scene, style }: { town: Town; scene: 
   const other = town.streets.find((s) => s.slug !== scene.slug)
   const goTo = (to: string) => {
     if (to === `/${town.slug}`) {
-      const origin = town.cover.hotspots.find((h) => h.to === scene.slug)
-      runZoomOut(origin ? { x: origin.x, y: origin.y } : { x: 0.5, y: 0.5 })
+      const h = town.cover.hotspots.find((x) => x.to === scene.slug)
+      const coverAsset = assetFor(town.slug, 'overview', style)
+      const aspect = coverAsset ? coverAsset.w / coverAsset.h : innerWidth / innerHeight
+      const contain = innerWidth / innerHeight < aspect
+      const pos = h
+        ? coverPos(h.x, h.y, { w: innerWidth, h: innerHeight }, aspect, contain)
+        : { left: 50, top: 50 }
+      runZoomOut({ x: pos.left / 100, y: pos.top / 100 })
     }
     navigate(to)
   }

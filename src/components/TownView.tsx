@@ -13,9 +13,9 @@ export default function TownView({ town, style }: { town: Town; style: StyleId }
         town={town}
         scene={town.cover}
         style={style}
-        onSelect={(h) => {
+        onSelect={(h, pos) => {
           if (!h.to || isTransitioning()) return
-          runPushIn({ x: h.x, y: h.y })
+          runPushIn({ x: pos.left / 100, y: pos.top / 100 })
           navigate(`/${town.slug}/${h.to}`)
         }}
       />

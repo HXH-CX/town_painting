@@ -55,7 +55,14 @@ describe('towns 数据完整性', () => {
     for (const t of TOWNS) {
       for (const s of [t.cover, ...t.streets]) {
         for (const st of STYLES) {
-          expect(keys.some((k) => k.startsWith(`${t.slug}/${s.slug}/${st}/`))).toBe(true)
+          const entry = (manifest as Record<string, { lqip?: string; sizes?: Record<string, unknown> }>)[
+            `${t.slug}/${s.slug}/${st}`
+          ]
+          expect(entry).toBeTruthy()
+          expect(entry.lqip).toBeTruthy()
+          for (const w of ['480', '960', '1600']) {
+            expect(entry.sizes?.[w]).toBeTruthy()
+          }
         }
       }
     }
