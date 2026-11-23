@@ -3,6 +3,7 @@ import { navigate } from '../router'
 import SceneView from './SceneView'
 import Breadcrumb from './Breadcrumb'
 import Dossier from './Dossier'
+import Toolbar from './Toolbar'
 
 export default function TownView({ town, style }: { town: Town; style: StyleId }) {
   return (
@@ -14,6 +15,7 @@ export default function TownView({ town, style }: { town: Town; style: StyleId }
         onSelect={(h) => h.to && navigate(`/${town.slug}/${h.to}`)}
       />
       <Breadcrumb items={[{ label: '镇在画中', to: '/' }]} />
+      <Toolbar town={town} style={style} />
       <Dossier town={town} />
     </>
   )

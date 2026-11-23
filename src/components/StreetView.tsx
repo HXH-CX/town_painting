@@ -4,6 +4,7 @@ import { navigate } from '../router'
 import SceneView from './SceneView'
 import Breadcrumb from './Breadcrumb'
 import StoryCard from './StoryCard'
+import Toolbar from './Toolbar'
 
 export default function StreetView({ town, scene, style }: { town: Town; scene: Scene; style: StyleId }) {
   const [active, setActive] = useState<Hotspot | null>(null)
@@ -17,6 +18,7 @@ export default function StreetView({ town, scene, style }: { town: Town; scene: 
           { label: town.name, to: `/${town.slug}` },
         ]}
       />
+      <Toolbar town={town} street={scene} style={style} />
       {other && (
         <button className="street-jumper" onClick={() => navigate(`/${town.slug}/${other.slug}`)}>
           去{other.name} →
