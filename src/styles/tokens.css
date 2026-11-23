@@ -1,0 +1,15 @@
+:root {
+  --bg: #101214;
+  --bg-elevated: rgba(22, 24, 27, 0.72);
+  --ink: #ece5d8;
+  --ink-dim: rgba(236, 229, 216, 0.62);
+  --accent: #d8a24a;
+  --line: rgba(236, 229, 216, 0.14);
+
+  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+  --font-sans: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --radius: 14px;
+  --toolbar-h: 56px;
+}
