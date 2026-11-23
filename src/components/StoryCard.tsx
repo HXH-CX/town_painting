@@ -5,7 +5,9 @@ export default function StoryCard({ story, onClose }: { story: Story; onClose: (
   const closeRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
+    const prev = document.activeElement as HTMLElement | null
     closeRef.current?.focus()
+    return () => prev?.focus()
   }, [])
 
   useEffect(() => {
