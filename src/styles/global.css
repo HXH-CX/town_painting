@@ -65,10 +65,3 @@ img {
   text-indent: 0.5em;
 }
 
-.home__hint {
-  position: fixed;
-  bottom: 1rem;
-  margin: 0;
-  color: var(--ink-dim);
-  font-size: 0.8rem;
-}
