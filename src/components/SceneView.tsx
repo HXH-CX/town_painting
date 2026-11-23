@@ -3,6 +3,7 @@ import type { Hotspot, Scene, StyleId, Town } from '../data/types'
 import { STYLE_LABEL } from '../data/styles'
 import { assetFor } from '../data/manifest'
 import HotspotButton from './Hotspot'
+import { getFlag, motionOK } from '../lib/transition'
 import '../styles/scene.css'
 
 interface Props {
@@ -50,11 +51,26 @@ export default function SceneView({ town, scene, style, onSelect }: Props) {
   }
 
   return (
-    <div className="scene">
+    <div
+      className={motionOK() ? 'scene scene--kb' : 'scene'}
+      onClick={(e) => {
+        if (!getFlag('debug')) return
+        const r = e.currentTarget.getBoundingClientRect()
+        const x = ((e.clientX - r.left) / r.width).toFixed(3)
+        const y = ((e.clientY - r.top) / r.height).toFixed(3)
+        console.log(`[热点坐标] x: ${x}, y: ${y}`)
+      }}
+    >
       {layers.map((l, i) => (
         <div
           key={l.key}
-          className={i === layers.length - 1 && layers.length > 1 ? 'scene__layer scene__layer--enter' : 'scene__layer'}
+          className={
+            i === layers.length - 1
+              ? layers.length > 1
+                ? 'scene__layer scene__layer--current scene__layer--enter'
+                : 'scene__layer scene__layer--current'
+              : 'scene__layer'
+          }
         >
           {media(l.style)}
         </div>
