@@ -15,6 +15,7 @@ export default function Home() {
         ))}
       </div>
       <p className="home__foot">点一座镇,走进去。</p>
+      <p className="home__credit">画面由 AI 生成 · 环境音为程序化合成</p>
     </main>
   )
 }

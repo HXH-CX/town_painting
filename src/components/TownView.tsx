@@ -5,6 +5,7 @@ import SceneView from './SceneView'
 import Breadcrumb from './Breadcrumb'
 import Dossier from './Dossier'
 import Toolbar from './Toolbar'
+import Particles from './Particles'
 
 export default function TownView({ town, style }: { town: Town; style: StyleId }) {
   return (
@@ -21,6 +22,7 @@ export default function TownView({ town, style }: { town: Town; style: StyleId }
       />
       <Breadcrumb items={[{ label: '镇在画中', to: '/' }]} />
       <Toolbar town={town} style={style} />
+      <Particles color="#ffb35c" />
       <Dossier town={town} />
     </>
   )

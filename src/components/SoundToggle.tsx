@@ -1,18 +1,16 @@
-import { useState } from 'react'
-
-const SOUND_KEY = 'zzhz.sound'
+import { useSyncExternalStore } from 'react'
+import { isEnabled, setEnabled, subscribeAmbience } from '../lib/ambience'
 
 export default function SoundToggle() {
-  const [on, setOn] = useState(() => localStorage.getItem(SOUND_KEY) === '1')
-
-  const toggle = () => {
-    const next = !on
-    setOn(next)
-    localStorage.setItem(SOUND_KEY, next ? '1' : '0')
-  }
+  const on = useSyncExternalStore(subscribeAmbience, isEnabled)
 
   return (
-    <button className="tool-btn" aria-pressed={on} aria-label={on ? '关闭环境音' : '开启环境音'} onClick={toggle}>
+    <button
+      className="tool-btn"
+      aria-pressed={on}
+      aria-label={on ? '关闭环境音' : '开启环境音'}
+      onClick={() => setEnabled(!on)}
+    >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M2 6v4h3l4 3V3L5 6H2z" fill="currentColor" />
         {on ? (

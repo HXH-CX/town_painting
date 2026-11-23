@@ -8,6 +8,7 @@ import SceneView from './SceneView'
 import Breadcrumb from './Breadcrumb'
 import StoryCard from './StoryCard'
 import Toolbar from './Toolbar'
+import Particles from './Particles'
 
 export default function StreetView({ town, scene, style }: { town: Town; scene: Scene; style: StyleId }) {
   const [active, setActive] = useState<Hotspot | null>(null)
@@ -36,6 +37,7 @@ export default function StreetView({ town, scene, style }: { town: Town; scene: 
         onNavigate={goTo}
       />
       <Toolbar town={town} street={scene} style={style} />
+      <Particles color={town.slug === 'shiomi' ? '#9fd0ff' : town.slug === 'zhongya' ? '#ffe9b0' : '#ffb35c'} />
       {other && (
         <button className="street-jumper" onClick={() => navigate(`/${town.slug}/${other.slug}`)}>
           去{other.name} →

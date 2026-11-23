@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useRoute } from './hooks/useRoute'
 import { getTown } from './data/towns'
 import { navigate } from './router'
+import { setScene } from './lib/ambience'
 import Home from './components/Home'
 import TownView from './components/TownView'
 import StreetView from './components/StreetView'
@@ -15,6 +16,10 @@ export default function App() {
     if (route.town && !town) navigate('/', true)
     else if (town && route.street && !street) navigate(`/${town.slug}`, true)
   }, [route, town, street])
+
+  useEffect(() => {
+    setScene(town?.slug ?? null)
+  }, [town])
 
   if (!town) return <Home />
   if (route.street && street) return <StreetView town={town} scene={street} style={route.style} />
